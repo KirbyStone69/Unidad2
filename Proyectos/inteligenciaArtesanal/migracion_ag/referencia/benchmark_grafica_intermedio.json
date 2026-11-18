@@ -1,0 +1,403 @@
+{
+  "parameters": {
+    "population": 50,
+    "generations": 30,
+    "seed": 12345,
+    "repetitions": 3
+  },
+  "notes": "Times exclude figure setup; each worker writes outputs only in TemporaryDirectory. GUI uses Qt offscreen, not desktop.",
+  "maxi": {
+    "baseline": {
+      "median_s": 0.08300059000248439,
+      "runs_s": [
+        0.08300059000248439,
+        0.08840723500179593,
+        0.07708261600055266
+      ],
+      "frames": [
+        {
+          "draw": 0,
+          "blit": 0
+        },
+        {
+          "draw": 0,
+          "blit": 0
+        },
+        {
+          "draw": 0,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        null,
+        null,
+        null
+      ],
+      "max_timer_gap_s": [
+        0,
+        0,
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "capture": {
+      "median_s": 0.08074154000132694,
+      "runs_s": [
+        0.08203224599856185,
+        0.08074154000132694,
+        0.08045425999807776
+      ],
+      "frames": [
+        {
+          "draw": 0,
+          "blit": 0
+        },
+        {
+          "draw": 0,
+          "blit": 0
+        },
+        {
+          "draw": 0,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        611,
+        611,
+        611
+      ],
+      "max_timer_gap_s": [
+        0,
+        0,
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "blit": {
+      "median_s": 5.105177248002292,
+      "runs_s": [
+        5.1299366489984095,
+        5.105177248002292,
+        5.013235392001661
+      ],
+      "frames": [
+        {
+          "draw": 3,
+          "blit": 121
+        },
+        {
+          "draw": 3,
+          "blit": 121
+        },
+        {
+          "draw": 3,
+          "blit": 121
+        }
+      ],
+      "samples": [
+        611,
+        611,
+        611
+      ],
+      "max_timer_gap_s": [
+        0,
+        0,
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "full": {
+      "median_s": 8.577059353003278,
+      "runs_s": [
+        8.755462339999212,
+        8.480508254000597,
+        8.577059353003278
+      ],
+      "frames": [
+        {
+          "draw": 121,
+          "blit": 0
+        },
+        {
+          "draw": 121,
+          "blit": 0
+        },
+        {
+          "draw": 121,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        611,
+        611,
+        611
+      ],
+      "max_timer_gap_s": [
+        0,
+        0,
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "gui": {
+      "median_s": 0.2470672569979797,
+      "runs_s": [
+        0.2881688060006127,
+        0.2470672569979797,
+        0.23567570199884358
+      ],
+      "frames": [
+        {
+          "draw": 2,
+          "blit": 2
+        },
+        {
+          "draw": 2,
+          "blit": 2
+        },
+        {
+          "draw": 2,
+          "blit": 2
+        }
+      ],
+      "samples": [
+        611,
+        611,
+        611
+      ],
+      "max_timer_gap_s": [
+        0.12398978899727808,
+        0.09792345800087787,
+        0.09640917200158583
+      ],
+      "timer_events": [
+        4,
+        4,
+        4
+      ],
+      "refreshes": [
+        2,
+        2,
+        2
+      ],
+      "same_population_and_rng": true
+    }
+  },
+  "mini": {
+    "baseline": {
+      "median_s": 0.08257030399909127,
+      "runs_s": [
+        0.08345892799843568,
+        0.08257030399909127,
+        0.07779050300086965
+      ],
+      "frames": [
+        {
+          "draw": 0,
+          "blit": 0
+        },
+        {
+          "draw": 0,
+          "blit": 0
+        },
+        {
+          "draw": 0,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        null,
+        null,
+        null
+      ],
+      "max_timer_gap_s": [
+        0,
+        0,
+        0
+      ],
+      "timer_events": [
+        0,
+        0,
+        0
+      ],
+      "refreshes": [
+        0,
+        0,
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "capture": {
+      "median_s": 0.09213410600204952,
+      "runs_s": [
+        0.09422679499766673,
+        0.09213410600204952,
+        0.08902745800151024
+      ],
+      "frames": [
+        {
+          "draw": 0,
+          "blit": 0
+        },
+        {
+          "draw": 0,
+          "blit": 0
+        },
+        {
+          "draw": 0,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        530,
+        530,
+        530
+      ],
+      "max_timer_gap_s": [
+        0,
+        0,
+        0
+      ],
+      "timer_events": [
+        0,
+        0,
+        0
+      ],
+      "refreshes": [
+        0,
+        0,
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "blit": {
+      "median_s": 5.104484170002252,
+      "runs_s": [
+        5.104484170002252,
+        5.036250607001421,
+        5.170250903000124
+      ],
+      "frames": [
+        {
+          "draw": 1,
+          "blit": 121
+        },
+        {
+          "draw": 1,
+          "blit": 121
+        },
+        {
+          "draw": 1,
+          "blit": 121
+        }
+      ],
+      "samples": [
+        530,
+        530,
+        530
+      ],
+      "max_timer_gap_s": [
+        0,
+        0,
+        0
+      ],
+      "timer_events": [
+        0,
+        0,
+        0
+      ],
+      "refreshes": [
+        121,
+        121,
+        121
+      ],
+      "same_population_and_rng": true
+    },
+    "full": {
+      "median_s": 7.917649748000258,
+      "runs_s": [
+        7.937825836001139,
+        7.886849071997858,
+        7.917649748000258
+      ],
+      "frames": [
+        {
+          "draw": 121,
+          "blit": 0
+        },
+        {
+          "draw": 121,
+          "blit": 0
+        },
+        {
+          "draw": 121,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        530,
+        530,
+        530
+      ],
+      "max_timer_gap_s": [
+        0,
+        0,
+        0
+      ],
+      "timer_events": [
+        0,
+        0,
+        0
+      ],
+      "refreshes": [
+        121,
+        121,
+        121
+      ],
+      "same_population_and_rng": true
+    },
+    "gui": {
+      "median_s": 0.20419089500137488,
+      "runs_s": [
+        0.23079706600037753,
+        0.20419089500137488,
+        0.20268452299933415
+      ],
+      "frames": [
+        {
+          "draw": 1,
+          "blit": 2
+        },
+        {
+          "draw": 1,
+          "blit": 2
+        },
+        {
+          "draw": 1,
+          "blit": 2
+        }
+      ],
+      "samples": [
+        530,
+        530,
+        530
+      ],
+      "max_timer_gap_s": [
+        0.06832471500092652,
+        0.06861198199840146,
+        0.06853588800004218
+      ],
+      "timer_events": [
+        4,
+        4,
+        4
+      ],
+      "refreshes": [
+        2,
+        2,
+        2
+      ],
+      "same_population_and_rng": true
+    }
+  }
+}

@@ -1,0 +1,8 @@
+# Python 3.13; versiones verificadas en este proyecto
+numpy==2.5.4
+pandas==3.1.0
+scikit-learn==1.9.1
+deap==1.4.4
+rich==15.0.0
+matplotlib==3.11.2
+pytest==9.2.0

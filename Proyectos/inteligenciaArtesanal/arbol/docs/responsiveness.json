@@ -1,0 +1,9 @@
+{
+  "seconds": 2.0019081930004177,
+  "qt_timer_ticks": 115,
+  "max_timer_gap_seconds": 0.10500608200527495,
+  "generation": 11,
+  "train_nmse": 4.7564739683170816e-32,
+  "validation_nmse": 7.662789783499896e-32,
+  "expression": "(6.67 + (-11 * sin(((7.23 * cube(x)) + -1.570796327))))"
+}

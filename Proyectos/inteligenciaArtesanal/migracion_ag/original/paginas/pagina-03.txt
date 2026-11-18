@@ -1,0 +1,138 @@
+298 ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO. ©RA-MA
+
+sscanf(argv[4], "td", &tam_pob ); // tamafio de la poblacién
+sscanf(argv(5}, "td", &num_gen ); // nGmero de iteraciones
+sscanf(argv(6], "*%l£", &prob_cruce ); // porcentaje de cruces
+sscanf(argv[7], "lf", &prob_mut ); // porcentaje de mutaciones
+
+// inicializaciones
+lcrom = (int)ceil(log(1 + (x_max - x_min)/TOL) / log((double)2));
+
+// inicializacién de nGmeros aleatorios
+time_t t;
+srand((unsigned) time(&t));
+
+// se genera la poblaci6én inicial
+
+pob = poblacion_inicial(tam_pob, lerom, x_min, x_max);
+// se evalGa la poblacién
+
+evaluacion(pob, tam_pob, pos_mejor, sumaptitud) ;
+
+// bucle de evoluci6n
+
+for (generacion=0; generacion < num_gen; generacion++) {
+seleccion(pob, tam_pob);
+reproduccion(pob, tam_pob, lcrom, prob_cruce, x_min, x_max);
+mutacion(pob, tam_pob, lcrom, prob_mut, x_min, x_max);
+evaluacion(pob, tam_pob, pos_mejor, sumaptitud) ;
+
+cout << "Aptitud del mejor(" << pos_mejor << ") = ";
+cout << pob{pos_mejor] .aptitud << " en " << pob[pos_mejor].x <<
+endl;
+
+[RRRRRRRRA RNR RARER AER N TREE E RARE EEE R EERE EERE RARER EEED |
+
+Lod */
+vAd funcion? poblacion_inicial */
+/* Genera la poblacion inicial aleatoriamente */
+td ; /
+
+sf;
+
+[RRRRRRER RARER EEREEER EEE NONE EERE ER EEE HERTHA REAR EES
+
+TPoblacion poblacion_inicial(int tam_pob, int lcrom,
+double x_min, double x_max)
+{
+
+TPoblacion pob;
+
+Tindividuo indiv;
+
+int i;
+
+for(is0; i < tam_pob; i++) {
+indiv = genera_indiv(lcrom, x_min, x_max) ;
+pob.push_back (indiv) ;
+
+return pob;
+
+[RRRRRRRRRR ERA EAE AEA AERA EEEEEREREE AE REER ERED /
+
+ie «f
+/* funcion: genera_indiv */
+/* Genera un individuo de la poblacion inicial */
+/* ay
+
+[PERNA AREER EERE ER EERE RARER ERE ER ER EERE EH /
+
+©RA-MA APENDICE B. SOLUCION PROYECTO 1: CODIGO C++ 299
+
+TIndividuo genera_indiv(int lcrom, double x_min, double x max)
+
+int i;
+TIndividuo indiv;
+int gen;
+
+indiv.genes.clear();
+for(i=0; i < lerom; i++) {
+if (rand() < RAND_MAX / 2 )
+gen = 0;
+else
+gen = 1;
+indiv.genes.push_back (gen) ;
+
+indiv.aptitud = adaptacion(indiv, lcrom,. x min, x max) ;
+return indiv; ~ ~
+
+}
+LAAAAERERRARENERTRRERERERERERHREEEREEEE HERE ER ERE E ERR E EERE /
+/* *
+/* funcion: seleccion %
+‘a Selecciona un unico individuo por el metodo de la ruleta */
+*
+
+af
+
+[PRRARNRERERERNTREE AREER ERE R RRR EERE ER RRR RR EERE ERED
+
+ef
+void seleccion(TPoblacion& pob, int tam_pob)
+
+int* sel_super; // seleccionados
+
+- para sobrevivir
+float prob, f; // probabilidad de seleccién
+int pos_super; // posicié6n del superviviente
+
+TPoblacion pob_aux;
+int i,j;
+
+int TAM_ELITE = pob.size()* 2 /100;
+int* sel_elite;
+
+// poblaci6én auxiliar
+
+sel_super = new int [tam_pob] ;
+
+eee = new int [TAM ELITE] ;
+[oenn-- no-one enn nn- =e =--//
+
+// se selecciona la elite
+
+zhe*
+
+for (i=0; i < TAM_BLITE; i++) {
+sel_elite[i] = 0;
+
+for (i=0; i < tam_pob; i++) {
+pob[{i].elite = false;
+j= 0;
+while ( (j < TAM_ELITE) &&
+
+P (pob[sel_elite[j]].aptitud >= pob[i} .aptitud)) {
+++;
+
+}
+if (j < TAM_ELITE) {

@@ -1,0 +1,81 @@
+{
+  "pdf": "../../a.pdf",
+  "sha256_pdf": "ccea1039dc986d5d6afb937174bd4e9e2587ddea08374aeaef2d7714cc9ec6e4",
+  "paginas": 12,
+  "escaneado": true,
+  "metodo": "pdftoppm -scale-to 2200 -png; Tesseract 5.5.0 eng --psm 3; revisión visual completa",
+  "imagenes": [
+    {
+      "pagina_pdf": 1,
+      "imagen": "paginas/pagina-01.png",
+      "ocr": "paginas/pagina-01.txt",
+      "sha256_imagen": "808e807bb4b906916aa3f49b93b893cc5f5eb88c4ec84835acf793182227aee0"
+    },
+    {
+      "pagina_pdf": 2,
+      "imagen": "paginas/pagina-02.png",
+      "ocr": "paginas/pagina-02.txt",
+      "sha256_imagen": "7a22772e0b0e8223b78bef66076d20a8ca336c6771e7250d09792ba1ee89f2f0"
+    },
+    {
+      "pagina_pdf": 3,
+      "imagen": "paginas/pagina-03.png",
+      "ocr": "paginas/pagina-03.txt",
+      "sha256_imagen": "838b03f1df26a4f0eafa4859aa98b2d3e822c64c064c9f52611331447041b3df"
+    },
+    {
+      "pagina_pdf": 4,
+      "imagen": "paginas/pagina-04.png",
+      "ocr": "paginas/pagina-04.txt",
+      "sha256_imagen": "2bda9b261c1779971ea5c34762cbb7f52bf9a3d66eec84974fcb4d02fb69f085"
+    },
+    {
+      "pagina_pdf": 5,
+      "imagen": "paginas/pagina-05.png",
+      "ocr": "paginas/pagina-05.txt",
+      "sha256_imagen": "773b71212b490a20801921229c628ed7a3b1002652ee0239d5f03f3d744276d8"
+    },
+    {
+      "pagina_pdf": 6,
+      "imagen": "paginas/pagina-06.png",
+      "ocr": "paginas/pagina-06.txt",
+      "sha256_imagen": "7df7e2e97d484901cb977fef7646a7c6959826a47de33ef23df81aa0e0df6b0e"
+    },
+    {
+      "pagina_pdf": 7,
+      "imagen": "paginas/pagina-07.png",
+      "ocr": "paginas/pagina-07.txt",
+      "sha256_imagen": "8a772e09893bf47962bfa35a869448284bb92619e3332ae1a68490c3e181967a"
+    },
+    {
+      "pagina_pdf": 8,
+      "imagen": "paginas/pagina-08.png",
+      "ocr": "paginas/pagina-08.txt",
+      "sha256_imagen": "99fe26c518649a938732302b6c47bdb2931a20ac953faf531e9f2131255aac7e"
+    },
+    {
+      "pagina_pdf": 9,
+      "imagen": "paginas/pagina-09.png",
+      "ocr": "paginas/pagina-09.txt",
+      "sha256_imagen": "52ab63379ee63be185ffe7f41216157961726c0c9351ee90d98dbf5911f8e343"
+    },
+    {
+      "pagina_pdf": 10,
+      "imagen": "paginas/pagina-10.png",
+      "ocr": "paginas/pagina-10.txt",
+      "sha256_imagen": "f953b6f54dbe03ce5de55364c019d06d58fc430d4d10579b48370f3b029b886a"
+    },
+    {
+      "pagina_pdf": 11,
+      "imagen": "paginas/pagina-11.png",
+      "ocr": "paginas/pagina-11.txt",
+      "sha256_imagen": "a3fb40ea30df39fa1a49d8fe6c1e6d685048ca3c717e95ac926a11d7486723c0"
+    },
+    {
+      "pagina_pdf": 12,
+      "imagen": "paginas/pagina-12.png",
+      "ocr": "paginas/pagina-12.txt",
+      "sha256_imagen": "9fe829263329b203aea62d78c94329c380b7fa24cc4d022bd06334bb09b845ec"
+    }
+  ]
+}

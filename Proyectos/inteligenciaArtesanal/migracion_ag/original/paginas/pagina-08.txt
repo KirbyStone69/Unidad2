@@ -1,0 +1,128 @@
+308 ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO, RAMA
+
+[PRRRRARRER ERA E RARER EERSTE NENNESEREE REESE TEER ER EE EERE NH /
+
+Aad ay
+/* funcion: seleccion */
+/* Selecciona un unico individuo por el metodo de la ruleta */
+/* +/
+
+EIEIO IOS OI ITO TTT ITT TREE eee eee |
+
+void seleccion(TPoblacion& pob, int tam_pob)
+
+int* sel_super;
+float prob,f;
+
+int pos_super;
+TPoblacion pob aux;
+int i,j;
+
+int TAM_ELITE = pob.size()* 2 /100;
+int* sel elite;
+
+// seleccionados para sobrevivir
+// probabilidad de seleccién
+
+// posici6én del superviviente
+// poblacién auxiliar
+
+sel_super = new int [tam_pob] ;
+
+sel_elite = new int [TAM_ELITE] ;
+
+[| -2-22 22-2 ----------+--- V/s
+
+// se selecciona la élite
+
+Bary
+
+for (i=0; i < TAM_ELITE; i++) {
+sel_elite[i] = 0;
+
+for (i=0; i < tam_pob; i++) {
+pob(i].elite = false;
+j = 0;
+while ( (j < TAM_ELITE) &&
+(pob[sel_elite(j]].aptitud >= pob [i] .aptitud) ) {
+j++;
+
+if (j < TAM_ELITE){
+sel_elite[j) = i;
+
+for (i=0; i < TAM_ELITE; i++){
+pob[sel_elite[i}].elite = true;
+
+// se seleccionan tam_pob individuos para reproducirse
+// se generan nGmeros aleatorios entre 0 y 1,
+// seleccionan individuos de acuerdo con su puntuaci6n acumulada
+
+for (i=0; i < tam_pob; i++) {
+if (pob[i).elite == true) //ELITISMO
+sel_super[i] = i;
+else{
+£ = rand();
+prob = (f£/(RAND_MAX+1.0));
+pos_super = 0;
+
+a
+
+| else
+
+©RA-MA APENDICE B, SOLUCION PROYECTO 1: CODIGO C++ 309
+
+while ({prob>pob[pos_super] .punt_acu) &&(pos_super < tam_pob))
+pos_super++;
+
+if (pos_super < tam_pob)
+sel_super{i] = pos_super;
+
+sel_super[i] = pos_super-1;
+
+// se genera la poblacién intermedia
+for (i=0; i < tam_pob; i++) {
+pob_aux.push_back (pob[sel_super[i]]});
+
+pob.clear();
+for (i=0; i < tam_pob; i++) {
+pob.push_back (pob_aux [i] ) ;
+
+delete [] sel_super;
+delete [] sel_elite;
+
+}
+
+[RRRRRREREREREREREERRERERRERRENEE REET EERE EER ER EE RRR ee
+/* */
+/* funcion: adaptacion /
+/* Evalua la calidad de un individuo By
+/2 *
+
+AAAS RRR ERR ERE H |
+
+double adaptacion(TIndividuo& individuo, int lcrom,
+double x_min, double x_max)
+{
+
+double x; // fenotipo
+double f; // valor de la funcién a optimizar
+
+x = decod(individuo.genes, lerom, x_min, x_max);
+individuo.x = x;
+
+// agut se especifica la funci6n a optimizar
+f = -(fabs(x * sin(sqrt (fabs (x)))));
+
+return £;
+}
+T Achahaieiehchahehehaheieiahaieiehiahahaieieiahaheiatahalel RERARRARRRARERERA ERA ERH REET /
+/* ef
+/* funcion: decod */
+/* Decodifica el genotipo de un individuo */
+vin bl f
+
+RRR ARERR RRR ERE HE/
+
+[Ptteteeennenneeneteneseeeee ee
+
+double decod(TGenes genes, int lcrom, double x_min, double x_max)

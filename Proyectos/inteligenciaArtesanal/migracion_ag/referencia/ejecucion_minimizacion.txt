@@ -1,0 +1,5 @@
+Comando: python3 migracion_ag/minimizacion.py -250 250 0.0001 500 100 0.4 0.001 --semilla 7
+Salida: Aptitud del mejor(0) = -201.843 en -203.814
+Diagnóstico: R1: puntos de cruce fuera de rango tratados como cruce al final: 2
+Código de salida: 0
+Tiempo (s): 6.631

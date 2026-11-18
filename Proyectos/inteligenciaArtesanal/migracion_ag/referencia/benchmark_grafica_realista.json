@@ -1,0 +1,164 @@
+{
+  "parameters": {
+    "population": 500,
+    "generations": 100,
+    "seed": 12345,
+    "repetitions": 1,
+    "mutation": 0.001
+  },
+  "notes": "Times exclude figure setup; each worker writes outputs only in TemporaryDirectory. GUI uses Qt offscreen, not desktop.",
+  "maxi": {
+    "baseline": {
+      "median_s": 3.031208566000714,
+      "runs_s": [
+        3.031208566000714
+      ],
+      "frames": [
+        {
+          "draw": 0,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        null
+      ],
+      "max_timer_gap_s": [
+        0
+      ],
+      "timer_events": [
+        0
+      ],
+      "refreshes": [
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "capture": {
+      "median_s": 3.145030540999869,
+      "runs_s": [
+        3.145030540999869
+      ],
+      "frames": [
+        {
+          "draw": 0,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        4913
+      ],
+      "max_timer_gap_s": [
+        0
+      ],
+      "timer_events": [
+        0
+      ],
+      "refreshes": [
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "gui": {
+      "median_s": 5.097781756998302,
+      "runs_s": [
+        5.097781756998302
+      ],
+      "frames": [
+        {
+          "draw": 1,
+          "blit": 18
+        }
+      ],
+      "samples": [
+        4913
+      ],
+      "max_timer_gap_s": [
+        0.09409169200080214
+      ],
+      "timer_events": [
+        105
+      ],
+      "refreshes": [
+        18
+      ],
+      "same_population_and_rng": true
+    }
+  },
+  "mini": {
+    "baseline": {
+      "median_s": 3.8786605510031222,
+      "runs_s": [
+        3.8786605510031222
+      ],
+      "frames": [
+        {
+          "draw": 0,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        null
+      ],
+      "max_timer_gap_s": [
+        0
+      ],
+      "timer_events": [
+        0
+      ],
+      "refreshes": [
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "capture": {
+      "median_s": 4.17199422900012,
+      "runs_s": [
+        4.17199422900012
+      ],
+      "frames": [
+        {
+          "draw": 0,
+          "blit": 0
+        }
+      ],
+      "samples": [
+        4515
+      ],
+      "max_timer_gap_s": [
+        0
+      ],
+      "timer_events": [
+        0
+      ],
+      "refreshes": [
+        0
+      ],
+      "same_population_and_rng": true
+    },
+    "gui": {
+      "median_s": 5.05065498499971,
+      "runs_s": [
+        5.05065498499971
+      ],
+      "frames": [
+        {
+          "draw": 1,
+          "blit": 20
+        }
+      ],
+      "samples": [
+        4515
+      ],
+      "max_timer_gap_s": [
+        0.0984179849983775
+      ],
+      "timer_events": [
+        105
+      ],
+      "refreshes": [
+        20
+      ],
+      "same_population_and_rng": true
+    }
+  }
+}

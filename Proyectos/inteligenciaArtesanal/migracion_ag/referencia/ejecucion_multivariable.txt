@@ -1,0 +1,5 @@
+Comando: python3 migracion_ag/multivariable.py 0,0 100,100 0.0001 500 100 0.4 0.001 --semilla 7
+Salida: Aptitud del mejor(0) = -127.27 en [65.5536, 65.5449]
+Diagnóstico: R1: puntos de cruce fuera de rango tratados como cruce al final: 9
+Código de salida: 0
+Tiempo (s): 7.063

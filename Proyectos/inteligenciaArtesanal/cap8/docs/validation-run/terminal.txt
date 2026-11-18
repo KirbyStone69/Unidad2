@@ -1,0 +1,22 @@
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                      │
+│  HYPERPARAMETER / GENETIC LAB                                                                                        │
+│  CAPÍTULO 08 · WINE + ADABOOST · EXPLORAR / AJUSTAR / COMPARAR                                                       │
+│                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+scikit-learn 1.9.1 · SAMME fijo · fitness = accuracy CV promedio
+Adaptación moderna: sin SAMME.R ni sklearn-deap antiguo.
+                                               Mejor resultado observado                                               
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Método          ┃ Accuracy CV ┃ Base CV  ┃ Segundos ┃ CV únicas ┃ Fits ┃ Mejores hiperparámetros                    ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Grid exhaustivo │ 0.954921    │ 0.932540 │ 41.830   │ 100       │ 500  │ n_estimators=80, learning_rate=0.59948425  │
+│ Grid genético   │ 0.954762    │ 0.932540 │ 14.962   │ 45        │ 225  │ n_estimators=70, learning_rate=0.59948425  │
+│ AG directo      │ 0.966032    │ 0.932540 │ 33.678   │ 75        │ 375  │ n_estimators=67, learning_rate=0.973384606 │
+└─────────────────┴─────────────┴──────────┴──────────┴───────────┴──────┴────────────────────────────────────────────┘
+Grid exhaustivo → n_estimators=80, learning_rate=0.59948425031894093
+Grid genético → n_estimators=70, learning_rate=0.59948425031894093
+AG directo → n_estimators=67, learning_rate=0.97338460633957691
+Tiempo: búsqueda con sus mensajes; baseline aparte. Fits: CV únicas × folds; no incluyen baseline.
+CV usada para selección, sin test independiente. Los AG no garantizan un óptimo global ni ser más rápidos.
+Grid exhaustivo garantiza el mejor score de su cuadrícula finita, no de todos los valores posibles.

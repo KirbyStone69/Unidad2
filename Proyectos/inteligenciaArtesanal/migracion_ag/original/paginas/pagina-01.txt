@@ -1,0 +1,47 @@
+294 ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO. © RA-MA
+
+auxiliar.genes [permuta [mejorCromosoma] [0] ]
+auxiliar.genes ([permuta [mejorCromosoma] [1] ]
+auxiliar.genes [permuta (mejorCromosoma] [2}]
+
+individuo.genes [v[0)}};
+individuo.genes[v[1]}]};
+individuo.genes[v[2]];
+
+for (int i = 0;i < individuo.lonCrom; i++) {
+individuo.genes{i] = auxiliar.genes [i] ;;
+}
+
+vy
+
+Apéndice B
+
+SOLUCION PROYECTO 1: CODIGO C++
+
+A continuacién se incluye el cédigo C++ correspondiente al Proyecto 1.
+Hemos seleccionado una funcién de cada uno de los tipos propuestos:
+maximizacién, minimizacién y multivarible.
+
+Se utiliza programacién estructurada y clases predefinidas de C++ como la
+clase vector.
+
+Los médulos que se presentan son los siguientes:
+
+| e funciones.h: médulo con las definiciones de tipos y prototipos de
+
+| funciones.
+
+e Funciones.cpp: médulo con la implementacién de las funciones.
+
+La funcién a optimizar se especifica en la funcién adaptacién.
+
+} El programa se puede invocar desde la linea de comandos, especificando
+los siguientes parametros:
+
+Limite inferior del intervalo en que busca el 6ptimo
+Limite superior
+
+Tolerancia o exactitud con la que se pide el resultado
+Tamaiio de poblacién
+
+Numero de generaciones de evolucién

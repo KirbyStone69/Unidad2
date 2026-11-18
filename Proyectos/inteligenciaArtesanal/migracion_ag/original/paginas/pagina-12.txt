@@ -1,0 +1,68 @@
+316 ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO. © RA-MA
+
+[RITA RRR R REE RERRR RRR ER AER EEEE EERE EERE EER RR EE /
+
+fe i A
+/* funcion: mutacion */
+/* Aplica el operador de mutacion a la poblacién */
+Phd */
+
+[RPRRRERE RHEE HERE ER ER EERE EE EEE EEERER EEE EERE R ERR E ERE R EERE /
+
+void mutacion(TPoblacion& pob, int tam_pob, Tvec_int lcrom,
+float prob_mut, Tvec_var x_min, Tvec_var x_max )
+{
+
+bool mutado;
+int i,j,k;
+float prob,f;
+
+for (is0; i < tam_pob; i++){
+mutado = false;
+for (k=0; k <NUM_VAR; k++) {
+for (j=0; j < lcrom(k]; j++){
+// se genera un nimero aleatorio en [0 1)
+£ = rand();
+prob = (f/{RAND_MAX+1.0));
+// se mutan aquellos genes con prob < que prob_mut
+if ((prob < prob_mut) && (!pob[i] .elite)) {
+pob [i] .vec_genes[k] [j] = ! (bool) ( pob[i] .vec_genes[(k) [j]);
+mutado = true;
+
+}
+
+if (mutado)
+pob[i] .aptitud_bruta = adaptacion(pob[i], lcrom, x_min, x_max);
+
+} .
+
+7
+
+BIBLIOGRAFIA
+
+[ALBO1] Alba, E., Troya, J.M. Analyzing synchronous and asynchronous
+parallel distributed genetic algorithms. Future Generation Comp. Syst., 17(4), pag.
+451-465, (2001).
+
+[ALB02] Alba, E., Tomassini, M. Parallelism and _ evolutionary
+algorithms. IEEE Trans. Evolutionary Computation, 6(5), pag. 443-462, (2002).
+
+[ANC03] Anchor, K.P., Zydallis, J.B., Gunsch, G.H., Lamont, G.B.
+Different Multi-objective Evolutionary Programming Approaches for Detecting
+Computer Network Attacks. Proc. Evolutionary Multi-Criterion Optimization.
+Second International Conference, EMO 2003, Springer. Lecture Notes in Computer
+Science. Volume 2632, pag. 707-721, (2003).
+
+[APP06] Applegate, D. L.; Bixby, R. M.; Chvatal, V. & Cook. The
+Traveling Salesman Problem. Princeton Series in applied Mathematics, (2006).
+
+[BAC91] Bick, T., Hoffmeister, F. Schwefel, H.P.. A survey of evolution
+strategies. Proc. of the Fourth International Conference on Genetic Algorithms,
+Morgan Kaufman, pag. 2-9, (1991).
+
+[BAC94] Bick, T. Selective pressure in evolutionary algorithms: A
+characterization of selection mechanisms. Proc. of the First IEEE Conf. on
+Evolutionary Computation, IEEE Press, pag. 57-62, (1994).
+
+[BAC96A] Bick, T.. Evolutionary Algorithms in Theory and Practice.
+Oxford University Press, New York, (1996).

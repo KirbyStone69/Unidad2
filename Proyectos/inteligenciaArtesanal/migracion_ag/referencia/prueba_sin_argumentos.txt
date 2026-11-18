@@ -1,0 +1,74 @@
+maximizacion: salida 0; 33.11s
+Aptitud del mejor(0) = 22.3137 en 31.5
+Datos guardados en datos_maximizacion.txt
+R1: puntos de cruce fuera de rango tratados como cruce al final: 48
+
+Programa: maximizacion
+Límite inferior: 0.0
+Límite superior: 32.0
+Tolerancia: 0.0001
+Población: 500
+Generaciones: 1000
+Probabilidad de cruce: 0.4
+Probabilidad de mutación: 0.001
+Semilla usada: 14920590274467374073
+RAND_MAX: 32767
+Longitud de cromosoma(s): 19
+
+Aptitud del mejor(0) = 22.3137 en 31.5
+Índice del mejor individuo: 0
+Aptitud con precisión completa: 22.313676284735458
+Fenotipo con precisión completa: 31.499999046323865
+Genes (LSB primero): 1111111111111011111
+Puntos de cruce corregidos: 48
+
+
+minimizacion: salida 0; 36.25s
+Aptitud del mejor(493) = -201.843 en -203.812
+Datos guardados en datos_minimizacion.txt
+R1: puntos de cruce fuera de rango tratados como cruce al final: 46
+
+Programa: minimizacion
+Límite inferior: -250.0
+Límite superior: 250.0
+Tolerancia: 0.0001
+Población: 500
+Generaciones: 1000
+Probabilidad de cruce: 0.4
+Probabilidad de mutación: 0.001
+Semilla usada: 11397807744595735435
+RAND_MAX: 32767
+Longitud de cromosoma(s): 23
+
+Aptitud del mejor(493) = -201.843 en -203.812
+Índice del mejor individuo: 493
+Aptitud con precisión completa: -201.8432174230821
+Fenotipo con precisión completa: -203.8123552575535
+Genes (LSB primero): 00101111010010111101000
+Puntos de cruce corregidos: 46
+
+
+multivariable: salida 0; 58.51s
+Aptitud del mejor(375) = -127.27 en [65.5476, 65.5467]
+Datos guardados en datos_multivariable.txt
+R1: puntos de cruce fuera de rango tratados como cruce al final: 111
+
+Programa: multivariable
+Límite inferior: 0,0
+Límite superior: 100,100
+Tolerancia: 0.0001
+Población: 500
+Generaciones: 1000
+Probabilidad de cruce: 0.4
+Probabilidad de mutación: 0.001
+Semilla usada: 5290801045840648812
+RAND_MAX: 32767
+Longitud de cromosoma(s): [20, 20]
+
+Aptitud del mejor(375) = -127.27 en [65.5476, 65.5467]
+Índice del mejor individuo: 375
+Aptitud con precisión completa: -127.26997375488281
+Fenotipo con precisión completa: [65.54762268066406, 65.54666900634766]
+Genes (LSB primero): 00101011001111100101; 01010011001111100101
+Puntos de cruce corregidos: 111
+

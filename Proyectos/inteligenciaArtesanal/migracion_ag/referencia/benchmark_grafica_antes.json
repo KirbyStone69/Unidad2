@@ -1,0 +1,27 @@
+{
+  "parameters": {
+    "population": 50,
+    "generations": 30,
+    "seed": 12345,
+    "repetitions": 3,
+    "backend": "Agg",
+    "range": [
+      -10,
+      10
+    ],
+    "tolerance": 0.0001,
+    "crossover": 0.4,
+    "mutation": 0.01
+  },
+  "notes": "Median algorithm runtime excludes figure setup. Forced mode performs 121 real canvas.draw calls per run. Complete population and final RNG state matched between all modes. Historical experiment, before renderer optimization. Historical figure constructor received default axis/title arguments because argumentos was called positionally; algorithm parameters were correct. Full redraw comparison is indicative, not an identical-layout experiment.",
+  "maximizacion": {
+    "baseline_median_s": 0.076061,
+    "capture_median_s": 0.077289,
+    "forced_full_median_s": 7.051149
+  },
+  "minimizacion": {
+    "baseline_median_s": 0.077661,
+    "capture_median_s": 0.079029,
+    "forced_full_median_s": 7.796936
+  }
+}

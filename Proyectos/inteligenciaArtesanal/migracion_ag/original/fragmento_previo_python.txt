@@ -1,0 +1,9 @@
+# Traducción de las únicas instrucciones recuperadas en PDF 1, libro 294.
+# NO es un cuarto programa: faltan la función, tipos, argumentos, permuta,
+# mejorCromosoma, v y creación de auxiliar. Los dos bloques externos cuyo
+# cierre aparece en C++ no se pueden reconstruir con este PDF.
+auxiliar.genes[permuta[mejorCromosoma][0]] = individuo.genes[v[0]]
+auxiliar.genes[permuta[mejorCromosoma][1]] = individuo.genes[v[1]]
+auxiliar.genes[permuta[mejorCromosoma][2]] = individuo.genes[v[2]]
+for i in range(individuo.lonCrom):
+    individuo.genes[i] = auxiliar.genes[i]

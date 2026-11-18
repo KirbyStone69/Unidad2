@@ -1,0 +1,5 @@
+Comando: python3 migracion_ag/maximizacion.py 0 32 0.0001 500 1000 0.4 0.001 --semilla 7
+Salida: Aptitud del mejor(0) = 22.3137 en 31.5005
+Diagnóstico: R1: puntos de cruce fuera de rango tratados como cruce al final: 56
+Código de salida: 0
+Tiempo (s): 35.305

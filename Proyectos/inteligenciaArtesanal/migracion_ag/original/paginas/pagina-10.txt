@@ -1,0 +1,65 @@
+312 _ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO, ©RA-MA ©RA-MA APENDICE B. SOLUCION PROYECTO 1: CODIGO C++ 313
+} if (pob [4] -aptitud > aptitud_mejor) {
+// se evaltan pos_mejor = i;
+hijol.aptitud_bruta = adaptacion(hijol, lerom, x_min, x_max) ; aptitud_mejor = pob[{i] .aptitud;
+) hijo2.aptitud_bruta = adaptacion(hijo2, lcrom, x_min, x_max);
+}
+
+for (i=0; i< tam_pob; i++) {
+
+[MARAESASOREASEAESEESSEN SES ENTEEEEESENONSEA SEER EA ESTEE NERO EE/ pob[i] .puntuacion = pob[i].aptitud / sumaptitud;
+
+bh sf pob[i] .punt_acu = pob[i].puntuacion + punt_acu;
+/* funcion: mutacion */ punt_acu = punt_acu + pob[i] .puntuacion;
+
+/* Aplica el operador de mutacion a la poblacién */
+
+/* é
+
+f/f }
+
+Y bbhheheheheheetettt ttt ttt ttt ttt Lee eee etry ialalalaiahaiabalahshalebebebebehehhelhdd tA
+
+void mutacion(TPoblacion& pob, int tam_pob, int lerom, double
+xob_mut, double x_min, double x . *
+te ™ — Funciones.h para varias variables
+
+bool mutado;
+int i,j;
+
+float prob; Necesitamos representar ahora los genes correspondientes a cada una de las
+
+' variables involucradas. Extendemos por lo tanto la representaci6n del individuo:
+for (i=0; i < tam_pob; i++) {
+
+mutado = false; typedef vector < bool > TGenes; // cadena de bits (genotipo)
+for (j=0; j < lerom; J++) { typedef vector< TGenes > Tvec_genes;// vector de genotipos
+// se genera un nimero aleatorio en fo 1) // de cada variable
+prob = (rand() /(RAND_MAX+1.0)); typedef vector< float > Tvec_var; // vector de fenotipos
+// se mutan aquellos genes con prob < que prob mut | // de cada variable
+if ((prob < prob mut) && (pob[i].elite)){ //ELITISMO typedef vector< int > Tvec_int; // vector para la longitudes
+pob[i] .genes[j] = ! (bool) ( pob[i] .genes[j}); // de los genes
+mutado = true; typedef struct{
+} Tvec_genes vec_genes;
+if (mutado) | Tvec_var vec_x; // fenotipo
+pot] -aptitud_bruta = adaptacion {(pob[i], lcrom, x_min, double aptitud_bruta; // funcién de evaluacié6n
+x_max) ; ~ double aptitud; // aptitud transformada
+} double puntuacion; // punt.relativa : fitness/sumfitness
+} double punt_acu; // puntuacién acumulada para sorteos
+}TIndividuo;
+J AAMAASENERSESTENTESS ENS NAENSONERE SEN ON NOONE SEES NS OREE SONS /
+i» */
+/* funcion: evaluacion ef
+/* Calcula y actualiza as estadisticas de la poblacién «/
+* Aad * * .
+Pretnnennemenmens eesti ictta ants deMiesialinatt Funciones.cpp para varias variables
+void evaluacion(TPoblacion& pob, int tam_pob, inté pos_mejor, Representa la funcién:
+double& sumaptitud) ~
+™ n
+float punt_acu = 0; —// puntacion acumulada de los individuos + £(%|i= 1.) =)" —x,sen(,/] x, |) +x, € [0, 100]
+float aptitud_mejor = 0; // mejor aptitud
+int i;
+Sumaptitud = 0; // suma de la aptitud tiene un valor de — 7 *63.63498 y se encuentra en x, = 65.54785.
+for (i=0; ic tam_pob; i++) { a= y i
+
+sumaptitud = sumaptitud + pob[i] -aptitud;

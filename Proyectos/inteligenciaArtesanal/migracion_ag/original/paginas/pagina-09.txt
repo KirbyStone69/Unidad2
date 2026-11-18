@@ -1,0 +1,129 @@
+7
+
+310 ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO. © RA-MA
+
+double x;
+x= (float) bin_dec (genes, 1crom) /(pow( (double) 2, (double)lcrom) - 1);
+
+x = x_min + (x_max - x_min) * x;
+return x;
+
+[PARRRRRARARRR AREA ELE REEEREEEEEHEREEREEREEREEREREEREREREREE |
+
+Fie o7
+/* funcion: bin_dec “/
+/* Convierte de binario a decimal */
+7* iA
+
+[PHRRREREEEHRE RR RRE EERE REE ERR EERE ER ERERRRERRRERRRERER EEE E /
+int bin_dec(TGenes genes, int lcrom)
+
+int i, d=0, pote1;
+for(i=0; i < lerom; i++) {
+
+d = d + pot*genes [i];
+pot = pot * 2;
+
+}
+
+return d;
+}
+[rene Seeeeeeeeeeereeeeeeeneene f
+i ay
+/* funcion: reproduccion */
+/* Seleccioha los individuos a reproducirse y aplica el */
+/* operador de cruce */
+/* bed i
+
+DROSS IIIOIIIIIIIOUIIUUO TR RR RRR t htt thin i in aiant /
+
+void reproduccion(TPoblacion& pob, int tam_pob, int lcrom,
+double prob_cruce, double x_min, double x_max) |
+{
+
+Int* sel_cruce; // seleccionados para reproducirse
+
+int num_sel_cruce=0; //num de individuos seleccionados para cruzar
+double prob;
+
+int punto_cruce;
+
+TIndividuo hijol, hijo2;
+
+int i;
+
+sel_cruce = new int [tam_pob] ;
+// se eligen los individuos a cruzar
+for (imQ; i < tam_pob; i++) {
+// se generan tam_pob nfimeros aleatorios a_i en [0 1)
+prob = (rand() /(RAND_MAX+1.0));
+// se eligen para el cruce los individuos de
+// las posiciones i con a_i < prob_cruce
+if (prob < prob_cruce) {
+
+©RA-MA APENDICE B. SOLUCION PROYECTO I: CODIGO C++ 311
+
+sel_cruce(num_sel_cruce) = i;
+num_sel_cruce++;
+
+// el nGmero de selecionados se hace par
+if ((mum_sel_cruce % 2) == 1)
+num_sel_cruce--;
+
+// se cruzan los individuos elegidos en un punto al azar
+punto_cruce = (int) (rand() * (lerom+1) / (RAND_MAX + 1.0)) + 1;
+for (i=0; i < num_sel_cruce; i=i+2) {
+
+cruce (pob[sel_cruce[i]], pob{sel_cruce[i+1]], hijol, hijo2,
+
+lerom, punto_cruce, x_min, x_max);
+
+// los nuevos individuos sustituyen a sus progenitores
+
+// xvespetando la élite
+
+if ((hijol.aptitud<adaptacion (pob[sel_cruce[i]],1lcrom,x_min,
+
+x_max)) || (!pob[sel_cruce[i]].elite)){ //ELITISMO
+pob[sel_cruce[i]] = hijol;
+
+if ((hijo2.aptitud <
+adaptacion(pob{sel_cruce[i+1]], lerom, x_min, x_max))
+|| (tpob[sel_cruce [i+1]] .elite)) {
+pob[sel_cruce[i+1]] = hijo2;
+
+delete [] sel_cruce;
+
+}
+
+[RRRRRRERRRERERHRRAEAEARE ERATE EER ERER EEA RA RARA RARER ERROR ERE |
+i */
+/* funcion: cruce ay
+/* Aplica el operador de cruce */
+’ Sod */
+
+[RRRRERRRARRNRE NRA NAAN ERS E AREER ERE ERRRRERE ARERR RRR RRR EH /
+
+void cruce(TIndividuo padrei, TIndividuo padre2, TIndividuo& hijol,
+TIndividuo& hijo2,
+
+int lerom, int punto_cruce, double x_min, double x_max)
+{
+
+int i;
+hijol.genes.clear();
+hijo2.genes.clear() ;
+
+// primera parte del intercambio: 1 aly 2a 2
+
+for(i=0; i < punto_cruce; i++) {
+hijol.genes.push_back (padrel.genes [i] ) ;
+hijo2.genes.push_back (padre2.genes [i] ) ;
+
+}
+
+// segunda parte: la2y2ail
+
+for(i=punto_cruce; i < lerom; i++) {
+hijol.genes.push_back (padre2.genes [i] )};
+hijo2.genes.push_back (padrel.genes[i]);

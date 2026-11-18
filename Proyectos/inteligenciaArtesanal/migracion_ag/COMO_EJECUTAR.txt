@@ -1,0 +1,111 @@
+COMANDOS PARA EJECUTAR LOS PROGRAMAS
+
+/
+
+
+1. Entrar a la carpeta del proyecto y activar el entorno:
+
+cd /home/kirby/cuatri/inteligenciaArtesanal
+source entorno/bin/activate
+cd migracion_ag
+
+Si ya estás en migracion_ag y ves (entorno), empieza directamente en el paso 2.
+
+2. Para ver la gráfica:
+
+python grafica.py -maxi
+
+La ventana se abre al comenzar y se actualiza mientras el algoritmo calcula:
+- Una sola gráfica que empieza vacía y agrega datos reales del algoritmo:
+  azul = todas las coordenadas evaluadas acumuladas, gris = población actual, rojo = mejor.
+- Arriba: generación, fase de procesamiento, tiempo y semilla automática.
+- Abajo: cromosoma binario del mejor individuo actual.
+
+Se usan 500 individuos y 1000 generaciones por defecto.
+Se guardan datos_maximizacion.txt, datos_grafica.txt y datos_evolucion.txt.
+El último registra tiempo, generación, fase, x y aptitud en cada fase.
+
+Para probar una ejecución más corta:
+python grafica.py 0 32 0.0001 50 30 0.4 0.001
+
+Para graficar la MINIMIZACIÓN en tiempo real:
+python grafica.py -mini
+
+Usa la función mínima del libro y el intervalo -250..250.
+Guarda datos_minimizacion.txt, datos_grafica_minimizacion.txt y
+ datos_evolucion_minimizacion.txt. No hay gráfica de tiempo ni sleeps.
+
+3. Para ejecutar el algoritmo de maximización:
+
+python maximizacion.py
+
+Se guarda datos_maximizacion.txt.
+
+4. Para ejecutar el algoritmo de minimización:
+
+python minimizacion.py
+
+Se guarda datos_minimizacion.txt.
+
+5. Para ejecutar el algoritmo con dos variables:
+
+python multivariable.py
+
+Se guarda datos_multivariable.txt.
+
+OPCIONAL: TAMBIÉN PUEDES ESCRIBIR TUS PROPIOS PARÁMETROS:
+
+python maximizacion.py 0 32 0.0001 50 10 0.4 0.001
+
+LOS NÚMEROS DE LOS ALGORITMOS, EN ORDEN:
+
+Límite inferior, límite superior, tolerancia, tamaño de población,
+número de generaciones, probabilidad de cruce, probabilidad de mutación.
+
+La semilla se genera automáticamente y aparece en la terminal y en el TXT.
+Para repetir una ejecución, añade --semilla y el número que quedó guardado.
+
+LOS TXT DE LOS ALGORITMOS CONTIENEN:
+
+Parámetros usados, semilla real, longitud de cromosomas, mejor aptitud,
+fenotipo (x), genes del mejor individuo y número de puntos de cruce corregidos.
+
+Los archivos se guardan en la carpeta desde donde ejecutes el comando.
+Cada ejecución reemplaza el TXT anterior del mismo programa.
+
+Para leer uno desde la terminal:
+
+cat datos_maximizacion.txt
+
+Sin parámetros se usan 500 individuos y 1000 generaciones.
+Los límites son 0..32 para maximización, -250..250 para minimización y
+0..100 en dos variables para multivariable. La semilla siempre se genera sola,
+salvo que indiques explícitamente --semilla.
+
+PANEL FIJO EN LA TERMINAL:
+
+Los algoritmos muestran generación, semilla, mejor resultado y ejemplos reales:
+Padre 1, Padre 2, Hijo 1 e Hijo 2 con el corte marcado por |.
+Una mutación muestra la cadena antes y después de invertir un bit.
+El panel se actualiza sin llenar la terminal de líneas y queda visible al terminar.
+No se añadieron pausas al algoritmo.
+
+La gráfica captura también hijos descartados e intermedios de mutación.
+Si acumula más de 10000 puntos, limita solo los visibles; el TXT conserva todos.
+El estudio de diseño, benchmarks y pruebas está en ANALISIS_GRAFICA.md.
+
+
+N REINAS — INTERFAZ PYQT6:
+Con el entorno activado:
+python -m pip install -r requirements-reinas.txt
+python reinas.py
+
+Empieza con 100 x 100 y 100 reinas.
+Edita N y pulsa Iniciar / reiniciar. N=1 o N>=4; 2 y 3 no tienen solución.
+Arriba: dos padres y dos hijos, con barra horizontal compartida.
+Abajo: un solo tablero que se ajusta automáticamente al tamaño de la ventana.
+En pantallas pequeñas la interfaz se compacta. No hay que ajustar zoom.
+Puntos = reinas cuando no cabe la corona. Rojo = reina en conflicto.
+Pausar / Continuar conserva la población mientras miras una generación.
+Al encontrar el ganador, se detiene. No guarda resultados en archivos.
+Mutación guiada opcional; conserva dos élites en memoria.

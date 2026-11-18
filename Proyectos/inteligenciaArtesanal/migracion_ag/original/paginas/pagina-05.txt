@@ -1,0 +1,126 @@
+302 _ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO. ©RA-MA
+
+void reproduccion(TPoblacion& pob, int tam_pob, int lcrom,
+double prob_cruce, double x_min, double x_max)
+{
+
+int* sel_cruce; //seleccionados para reproducirse
+
+int num_sel_cruce=0; //num de individuos seleccionados a cruzar
+double prob;
+
+int punto_cruce;
+
+TIndividuo hijol, hijo2;
+
+int i;
+
+sel_cruce = new int [tam_pob] ;
+// se eligen los individuos a cruzar
+for (i=0; i < tam_pob; i++) {
+// se generan tam_pob numeros aleatorios a_i en [0 1)
+prob = (rand()/(RAND_MAX+1.0));
+// se eligen para el cruce los individuos de
+// las posiciones i con a_i < prob_cruce
+if (prob < prob_cruce) {
+sel_cruce(num_sel_cruce) = i;
+num_sel_cruce++;
+
+}
+
+// el nGmero de selecionados se hace par
+if ((num_sel_cruce % 2) == 1)
+num_sel_cruce--;
+
+// se cruzan los individuos elegidos en un punto al azar
+punto_cruce = (int) (rand() * (lcrom+1) / (RAND_MAX + 1.0)) + 1;
+for (i=0; i < num_sel_cruce; i=i+2){
+
+cruce (pob[sel_cruce[i]], pob[{sel_cruce[i+1]], hijol, hijo2,
+
+lerom, punto_cruce, x_min, x_max);
+
+// los nuevos individuos sustituyen a sus progenitores
+
+// vespetando la élite
+
+if ((hijol.aptitud<adaptacion (pob[sel_cruce[i}],lcrom,x_min,
+
+x_max)) || (!pob[{sel_cruce[i]].elite)){ //ELITISMO
+pob{sel_cruce[i]] = hijol;
+
+}
+if ((hijo2.aptitud <
+adaptacion(pob[sel_cruce[i+1]], lcrom, x_min, x_max))
+
+|| (tpob [sel_cruce [i+1]] .elite)) {
+pob{sel_cruce[i+1]] = hijo2;
+
+delete [] sel_cruce;
+
+[PPRERRANHEER NER NER RRR R EERE ERA ERR AREA ROR ER ER REneEERe eH EE/
+
+& */
+/* funcion: cruce ef
+/* Aplica el operador de cruce */
+Fh A
+
+[PRRREAANERRRRAAR ERR RERARERRRARERA REAR RERARERRRERR AERA RAH EES /
+
+©RA-MA APENDICE B. SOLUCION PROYECTO 1: CODIGO C++ 303
+
+void cruce(TIndividuo padrel, TIndividuo padre2, Tindividuo& hijol,
+el ac hijo2, int lerom, int punto_cruce, double x_min, double
+x_max
+{
+
+int i;
+
+hijol.genes.clear();
+
+hijo2.genes.clear() ;
+
+// primera parte del intercambio: 1 a1 ys oe
+
+for(i=0; i < punto_eruce; i++) {
+hijol.genes.push_back (padrel.genes [i] ) ;
+hijo2.genes.push_back (padre2.genes [i] ) ;
+
+// segunda parte: la2y2ail
+
+for(i=punto_cruce; i < lcrom; i++) {
+hijol.genes.push_back (padre2.genes [i] ) ;
+hijo2.genes.push_back (padrel.genes [i] ) ;
+
+// se evaldan
+
+hijol.aptitud = adaptacion(hijol, lcrom, x_min, x_max);
+hijo2.aptitud = adaptacion(hijo2, lcrom, x_min, x_max) ;
+
+U Aadihahahedehahahahelahalahaiatehehehebalahehelalahelelelaleheleelehaleielelalelelehslehelcteieheheieicshehchedeh dei A
+
+/* af
+/* funcion: mutacion */
+/* Aplica el operador de mutacion a la poblacion */
+deck */
+/* * SAREE RREEA EHH HEREREAEEREEEHANTENERER EER RERE HERE E DE /
+
+void mutacion(TPoblacion& pob, int tam_pob, int lerom, double
+Pprob_mut, double x_min, double x_max)
+
+bool mutado;
+int i,j;
+float prob;
+
+for (i=0; i < tam_pob; i++) {
+mutado = false;
+for (j=0; j < lerom; j++){
+// se genera un namero aleatorio en [0 1)
+prob = (rand() / (RAND_MAX+1.0));
+// se mutan aquellos genes con prob < que prob_mut
+if ((prob < prob_mut) && (!pob{i].elite)){ //ELITISMO
+pob[i] .genes[j] = ! (bool) ( pob[i] .genes[j});
+mutado = true;
+
+if (mutado)
+pob[i].aptitud = adaptacion(pob[i], lerom, x_min, x_max);

@@ -1,0 +1,157 @@
+296 ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO. @RA-MA
+
+e Tasa de cruce
+e Tasa de mutacién
+
+Por ejemplo, para la primera funcién que se presenta:
+funciones 0.0 32.0 0.0001 500 1000 0.4 0.001
+
+Se describen también los cambios que se introducen para la minizacién de
+una funcidn y para trabajar con funciones de varias variables.
+
+Médulo funciones.h
+
+©RA-MA
+
+APENDICE B. SOLUCION PROYECTO 1: CODIGO C++ 297
+
+TIndividuo& hijo2,int lcrom, int punto_cruce,
+double x_min, double x_max) ;
+void mutacion(TPoblacion& pob, int tam_pob, int lcrom,
+double prob_mut,double x min, double x_max);
+void evaluacion(TPoblacion& pob, int tam_pob, int& pos mejor,
+double& sumfitness) ; ~
+
+Médulo funciones.cpp
+
+#include <stdlib.h>
+#include <math.h>
+f#linclude <string>
+#include <vector.h>
+
+using namespace std;
+
+// individuo
+
+typedef vector < bool > TGenes;
+typedef struct {
+
+TGenes genes; // cadena de bits (genotipo)
+double x; // fenotipo
+double aptitud; // funcion de evaluacion
+
+double puntuacion; // punt. relativa:fitness/sumfitness
+dOuble punt_acu; // puntuacion acumulada para sorteos
+bool elite; // indicativo de pertenecer a la elite
+}TIndividuo;
+// poblaci6n
+typedef vector <Tindividuo> TPoblacion;
+
+JOU eee e einer en /
+
+/* Funciones del médulo */
+
+[PERERA RRR REAR EERE |
+
+TPoblacion poblacion_inicial(int tam_pob, int lcrom, double x_min,
+double x_max);
+
+TIndividuo genera_indiv(int lcrom, double x_min, double x_max);
+
+void seleccion(TPoblacion& pob, int tam_pob);
+
+double adaptacion(TIndividuo& individuo, int lcrom, double x_min,
+
+double x_max);
+double decod(TGenes genes, int lcrom, double x_min, double x_max);
+int bin_dec(TGenes genes, int lcrom);
+
+void reproduccion(TPoblacion& pob, int tam_pob, int lcrom,
+double prob_cruce, double x_min, double x_max) ;
+void cruce(TIndividuo padrel, TIndividuo padre2, TIndividuo& hijol,
+
+Representa la funcién:
+
++ f(x) =20+e-20e°™" — eo" : xe [0, 32]
+
+que presenta un maximo (22.3136) en 31.5005.
+
+[RRRRNETRTRARe
+
+SRE AA EARNER EEA RENEE EERE REE RED
+
+/* Programacion evolutiva: proyecto 1
+
+/* version 1.0:
+
+/*
+
+/* Modulo funciones.cpp
+/*
+
+weeeeeee
+wh
+ay
+ay
+id
+Et
+
+[ARAANERRERERAENARRERER EER ERNE RRR R REE R ER RRR EEE EERE ERE O RRR OREE EERE
+
+#include "funciones.h"
+
+main( int arge, char *argv[])
+
+double x_min;
+double x_max;
+double TOL;
+
+int tam_pob;
+
+int num_gen;
+double prob_cruce;
+double prob_mut;
+TPoblacion pob;
+int lcrom;
+
+int generacion;
+int pos_mejor;
+double sumaptitud;
+
+sscanf(argv(1}, "lf",
+sscanf(argv[2], "%lf£",
+
+sscanf(argv(3], "%lf",
+
+// limite inferior del intervalo
+// limite superior del intervalo
+// Tolerancia
+
+// tamafio de poblacién
+
+// nGmero de generaciones
+
+// probabilidad de cruce
+
+// probabilidad de mutacién
+
+// poblacién
+
+// longitud de los individuos
+// contador de generaciones
+
+// posicién del mejor individuo
+// suma de adaptaciones
+
+&x_min ); // limite inferior del intervalo
+
+// en que
+&x_max ); // limite
+// en que
+
+se busca el 6ptimo
+superior del intervalo
+se busca el 6ptimo
+
+&TOL ); // tolerancia o exactitud
+// con que se busca el 6ptimo

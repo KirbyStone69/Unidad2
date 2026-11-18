@@ -1,0 +1,121 @@
+314 ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO. ©RA-MA
+
+©RA-MA APENDICE B. SOLUCION PROYECTO 1: CODIGO C++ 315
+
+Las funciones se modifican sélo para aplicarse a todas las cadenas de genes
+incluidas en la representacién. Incluimos aqui sdlo las funciones que se ven
+
+afectadas:
+
+[RERR RRR R EERE EERE EEE E EERE E AR ERN EERE EEE ERERERREEE EEA HORE |
+
+& ef
+/* funcion: genera_indiv */
+/* Genera un individuo de la poblacién inicial «/
+/* wf
+
+[PRRRAEEEEREAEE TEER E REE EERE EERE RE EREHREEREEEEE AA NREED |
+
+TiIndividuo genera_indiv(Tvac_int lcrom, Tvec_var x_min, Tvec_var
+x_max)
+{
+
+int i,j;
+
+Tindividuo indiv;
+
+TGenes genes;
+
+int gen;
+
+float f;
+
+indiv.vec_genes.clear() ;
+
+{* a a a a nn nnne */
+/* se generan los genotipos para cada variable */
+/* wen ne ee ee ee we nn ee ee eee cess ces esesecesceene */
+
+for(i=0; i< NUM_VAR; i++) {
+genes.clear({);
+for(j=0; j < lerom{i]; j++) {
+f = rand({);
+if (£ < RAND_MAX / 2 )
+ge? = 0;
+else
+gen = 1;
+genes .push_back (gen) ;
+
+indiv.vec_genes.push_back (genes) ;
+
+indiv.aptitud_bruta = adaptacion(indiv, lcrom, x_min, x_max);
+return indiv;
+
+[BARR ARERR ERE EEA EERE RARER EERE EEE EEREEEE EERE EERE EOE REE HERR /
+
+i i 4
+/* funcion: adaptacion */
+/* Evalua la calidad de un individuo */
+’ da LF i
+[steeeeer Totti iitiseriri irri iii iis) teeeeeeeeeeee/
+
+float adaptacion(TiIndividuo& individuo, Tvec_int lcrom,
+Tvec_var x_min, Tvec_var x_max)
+{
+
+int i;
+Tvec_var x; // vector de fenotipos
+
+float £; // valor de la funcion a optimizar
+x.clear();
+individuo.vec_x.clear();
+for(i=0; i < NUM_VAR; i++) {
+individuo.vec_x.push_back (
+decod (individuo.vec_genes{i], lerom{i], x_min[i], x_max[i]));
+
+x = individuo.vec_x;
+£ = 0;
+
+for(i=0; i < NUM_VAR; i++) {
+f =f - x{i) * sin(sqrt (fabs (x[i])}));
+
+return f;
+}
+[Pde R RRR R RRR eeeeeeeeeeeeteeesanannreneneeaaeeD/
+/* */
+/* funcion: cruce */
+/* Aplica el operador de cruce */
+/* BA
+
+T Achahelchehehehaleteleteheleheheiehahahalehahohohelehelehehehehehohehoheiahalelehohehehehalaheleieleielehehehehohehehatel A
+
+void cruce(TIndividuo padrel, TIndividuo padre2, TIndividuo& hijol,
+TIndividuo& hijo2,Tvec_int lcrom, Tvec_int punto_cruce,
+Tvec_var x_min, Tvec_var x_max)
+
+int i,j;
+TGenes genes _hijol, genes_hijo2;
+
+hijol.vec_genes.clear();
+hijo2.vec_genes.clear() ;
+
+for(j=0; j < NUM_VAR; j++){
+// primera parte del intercambio: 1 a1 y 2 a 2
+genes_hijol.clear();
+genes_hijo2.clear();
+for(i=0; i < punto_cruce[j]; i++) {
+genes_hijol.push_back (padrel.vec_genes[{j] (il);
+genes_hijo2.push_back (padre2.vec_genes[j] [i]);
+
+// segunda parte: la2y2al
+
+for(i=punto_cruce[j]; i < lerom[j]; i++){
+genes_hijol.push_back (padre2.vec_genes[j] [i});
+genes_hijo2.push_back (padre1.vec_genes[j] [il);
+
+hijol.vec_genes.push_back (genes_hijol) ;
+hijo2.vec_genes.push_back(genes_hijo2) ;
+
+// se evaldan
+hijol.aptitud_bruta = adaptacion(hijol, lcrom, x_min, x_max);
+hijo2.aptitud_bruta = adaptacion(hijo2, lerom, x_min, x_max) ;

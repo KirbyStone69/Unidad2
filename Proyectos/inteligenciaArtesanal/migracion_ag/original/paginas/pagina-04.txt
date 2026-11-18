@@ -1,0 +1,120 @@
+300 ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO. © RA-MA
+
+sel_elite[j] = i:
+
+}
+
+for (i=0; i < TAM_ELITE; i++) {
+pob[sel_elite[{i]].elite = true;
+
+// se seleccionan tam_pob individuos para reproducirse
+// se generan nGmeros aleatorios entre 0 y 1,
+// seleccionan individuos de acuerdo con su puntuacién acumulada
+
+for (i=0; i < tam_pob; ite) {
+if (pob{i].elite == true) //ELITISMO
+sel_super[i] = i;
+else{
+£ = rand();
+prob = (f/(RAND_MAX+1.0));
+super = 0;
+Unie A Gicobspeb tposcesuperl -punt_acu) &&(pos_super < tam_pob))
+pos_super++;
+if (pos_super < tam_pob)
+sel_super[i] = pos_super;
+else
+sel_super[i] = pos_super-1;
+}
+
+// se genera la poblacién intermedia
+for (i=0; i < tam_pob; i++) {
+pob_aux.push_back (pob[se1_super [i] ]);
+
+a
+
+pob.clear();
+
+for (i=0; i < tam_pob; i++){
+pob.push_back (pob_aux{i]);
+
+delete [] sel_super;
+delete {] sel_elite;
+
+D padkehekekek thet tt tehehetohetaiatetetechatehehahehahahalehehehehehaheleieheheiahehaieheleheieheiehelelaielaialaialel A
+
+/* th
+/* funcion: adaptacion ef
+/* Evalua la calidad de un individuo 5
+/*
+
+[RARREREEE RENE ERE R EERE NER ERERERER EER EERE REESE ARERR ERE R TEES /
+double adaptacion(TIndividuo& individuo, int lcrom,
+double x_min, double x_max)
+
+double x; // fenotipo
+double f; // valor de la funci6én a optimizar
+
+©RA-MA APENDICE B. SOLUCION PROYECTO 1: CODIGO C++ 301
+
+x = decod(individuo.genes, lerom, x_min, x_max) ;
+individuo.x = x;
+// agui se especifica la funcién a optimizar
+
+£ = 20+exp( (double) 1) -20*exp( (double) (-0.2*fabs (x) ))-
+exp ( (double) (cos (2*M_PI*x)));
+
+return f;
+}
+[A*RRRRRRR RRR RE EERE REE EERE EERE EERE NER ER ERROR RRR /
+/* s/f
+/* funcion: decod wf
+/* Decodifica el genotipo de un individuo of
+/* /
+
+[#RRRRRARERERERER ERE EERE
+
+wate
+
+SOR Rie /
+
+double decod(TGenes genes, int lcrom, double x_min, double x_max)
+
+{
+
+double x;
+
+x=(float)bin_dec(genes, lerom) /(pow( (double) 2, (double)lcrom) - 1);
+
+x = x_min + (x_max - x_min) * x;
+return x;
+
+}
+
+[RRR ee SHEARER AAREREEARAAAARAE RHEE R ER EERE ERED Pa
+A ‘gt A
+/* funcion: bin dec */
+/* Convierte de binario a decimal ial
+fs */
+[reernee SAREE RERERERRERAEERAEREREREREA ERE REAR EOER ERNE HORE /
+
+int, bin_dec(TGenes genes, int lcrom)
+int i, d=0, pot=1;
+for(i=0; i < lerom; i++) {
+
+d= d + pot*genes [i];
+pot = pot * 2;
+
+return d;
+
+}
+
+[** RRRRAERERRREREE EER EEE EEE AAA EEE EEE EERE TEETER EES |
+as of
+/* funcion: reproduccion */
+/* Selecciona los individuos a reproducirse y aplica el */
+/* operador de cruce */
+/* +/
+
+D halehehehahabehehetehehehehabeheheiehehehedelel
+
+eee/

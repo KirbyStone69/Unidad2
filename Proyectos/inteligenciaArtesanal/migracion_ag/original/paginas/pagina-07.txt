@@ -1,0 +1,121 @@
+306 ALGORITMOS EVOLUTIVOS: UN ENFOQUE PRACTICO. ©RA-MA
+
+sscanf(argv[3], "tlf", «TOL ); // tolerancia o exactitud
+
+// con que se busca el dptimo
+sscanf (argv[4), "td", &tam_pob ); // tamafio de la poblacién
+sscanf(argv[5}, "%d", &num_gen ); // nGmero de iteraciones
+sscanf(argv[6], "%lf", &prob_cruce ); // porcentaje de cruces
+sscanf(argv[7], "tlf", &prob_mut ); // porcentaje de mutaciones
+
+// inicializaciones
+lerom = (int)ceil(log(1 + (x_max - x_min)/TOL) / log((double)2));
+
+// inicializaci6én de nGmeros aleatorios
+time_t t;
+srand((unsigned) time(&t));
+
+// se genera la poblacién inicial
+
+pob = poblacion_inicial(tam_pob, lerom, x_min, x_max) ;
+
+// transformacién de la adaptaci6n para minimizar
+revisar_adap_mini(pob, tam_pob, Icrom, cmax, x_min, x_max);
+
+// se evalGa la poblacién
+evaluacion(pob, tam_pob, pos_mejor, sumaptitud) ;
+
+// bucle de evolucién
+
+for (generacion=0; generacion < num_gen; generacion++) {
+seleccion(pob, tam_pob) ;
+reproduccion(pob, tam_pob, lcrom, prob_cruce, x_min, x_max);
+mutacion(pob, tam_pob, lcrom, prob_mut, x_min, x_max);
+revisar_adap_mini(pob, tam_pob, lcrom, cmax, x_min, x_max);
+
+} evaluacion (pob, tam_pob, pos_mejor, sumaptitud) ;
+
+cout << "Aptitud del mejor(".<< pos_mejor << ") = ";
+
+cout << pob[{pos_mejor] .aptitud_bruta;
+
+cout << "en " << pob[pos_mejor] .x << endl;
+
+} zi
+
+DROSS IIIS III /
+
+ded of
+/* funcion: revisar_adap_ mini */
+/* Revisa la aptitud de la pob para transforma mini en maxi */
+v4 */
+[ree SRR REE RREERREREREEREREREREREREE EERE REE EERE EE wa/
+
+void revisar_adap_mini(TPoblacion& pob, int tam_pob, int lcrom,
+double& cmax, float x_min, float x_max)
+{
+
+int i;
+cmax;
+
+cmax = pob[0} .aptitud_bruta;
+for(iel; i < tam_pob; i++){
+if (pob[i] .aptitud > cmax)
+
+©RA-MA * APENDICE B. SOLUCION PROYECTO I: CODIGO C++ 307
+
+cmax = pob[i] .aptitud_bruta;
+
+emax = cmax + cmax / 100;
+for(i=0; i < tam_pob; i++) {
+pob[i] .aptitud = cmax - pob[i] .aptitud_bruta;
+
+}
+
+[PERERA ANNAN HRA AREER RRR RRERRERR EERE REAR RRR EEE EERE REED /
+/* ed
+/* funcion: poblacion_inicial */
+/* Genera la poblacién inicial aleatoriamente */
+/* +f
+[tttteee eee Sadahedathedhehehahahehahahehahehehahhehaiehehabahabatehelcteieiateishatiaiaheahaiehal A
+
+TPoblacion poblacion_inicial(int tam_pob, int lcrom,
+{ double x_min, double x_max)
+
+TPoblacion pob;
+
+TIndividuo indiv;
+
+int i;
+
+for(i=0; i < tam_pob; i++) {
+indiv = genera_indiv(lcrom, x_min, x_max);
+pob.push_back (indiv) ;
+
+return pob;
+
+}
+
+[PARRA EEA EERE EEEEEERERREEHEE oe/
+fe */
+/* funcion: genera_indiv */
+/* Genera un individuo de la poblacién inicial */
+/* bd
+| halhahahalahchahahahehahaieichehehehchehihehehahehchehahehehehatelalehalelcletelelehshelelalatcloichetelchalolehehahehed A
+
+TIndividuo genera_indiv(int lcrom, double x_min, double x_max)
+
+int i;
+TIndividuo indiv;
+int gen;
+
+indiv.genes.clear();
+for(i=0; i < lcrom; i++) {
+if (rand() < RAND_MAX / 2 )
+gen = 0;
+else
+gen = 1;
+indiv.genes.push_back (gen) ;
+
+indiv.aptitud_bruta = adaptacion(indiv, lerom, x_min, x_max) ;
+return indiv;

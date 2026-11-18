@@ -1,0 +1,520 @@
+import type { Question } from "./questions";
+type Draft = Omit<Question, "id" | "unit" | "original" | "revision">;
+const c = (
+  prompt: string,
+  options: string[],
+  correct: number,
+  explanation: string,
+  concept: string,
+  code?: string,
+): Draft => ({
+  type: "choice",
+  prompt,
+  options,
+  answer: String(correct),
+  explanation,
+  concept,
+  code,
+});
+const n = (
+  prompt: string,
+  answer: number,
+  explanation: string,
+  concept: string,
+): Draft => ({
+  type: "number",
+  prompt,
+  answer: String(answer),
+  tolerance: 0.001,
+  explanation,
+  concept,
+});
+const o = (
+  prompt: string,
+  options: string[],
+  answer: string,
+  explanation: string,
+  concept: string,
+): Draft => ({ type: "order", prompt, options, answer, explanation, concept });
+export const advancedCounts = [4, 5, 7, 4, 7, 6, 7, 6];
+export function advancedDraft(
+  unit: number,
+  index: number,
+  variant: number,
+): Draft {
+  const k = (variant % 5) + 2;
+  const groups: Record<number, Draft[]> = {
+    1: [
+      c(
+        "Se observaron x=1,2,3 con y=x². ¿Qué candidata no puede distinguirse de x² usando solo ese conjunto?",
+        ["x²+(x−1)(x−2)(x−3)", "x²+1", "x³", "2x²"],
+        0,
+        "El término añadido es cero en cada x observado. Ambas expresiones tienen SSE=0 allí, aunque en x=0 producen 0 y −6 respectivamente. No hay identificación única.",
+        "Identificabilidad",
+      ),
+      c(
+        "Se elige entre 1000 árboles usando repetidamente el mismo conjunto llamado validación. Luego se informa ese error como prueba final. ¿Problema principal?",
+        [
+          "La validación participó en la elección y ya no es una prueba independiente",
+          "El número de árboles debe ser par",
+          "MSE solo admite dos modelos",
+          "Todo el error es necesariamente cero",
+        ],
+        0,
+        "Comparar repetidamente para elegir también adapta decisiones a ese conjunto. Se necesita una prueba separada para una estimación final independiente de la selección.",
+        "Generalización",
+      ),
+      c(
+        "Un experimento cambia la biblioteca de {+,*} a {+,*,sin}. ¿Qué cambió además de los parámetros?",
+        [
+          "Solo el formato CSV",
+          "El espacio de estructuras y funciones representables",
+          "La definición de dato observado",
+          "La aridad de multiplicación",
+        ],
+        1,
+        "Añadir sin permite funciones no disponibles en la biblioteca anterior. Cambia el espacio de búsqueda simbólica, incluso manteniendo población y número de generaciones.",
+        "Espacio de búsqueda",
+      ),
+      c(
+        "Un modelo descubre y=1000x en datos donde x está en metros. Se cambia x a milímetros sin reentrenar. ¿Qué conclusión es válida?",
+        [
+          "La expresión siempre es una ley causal universal",
+          "El cambio de unidades exige transformar la expresión y revisar su interpretación",
+          "R² siempre permanece uno si no se cambia el modelo",
+          "PG es invariante a todas las unidades sin ajustes",
+        ],
+        1,
+        "Al cambiar la escala de entrada, la misma etiqueta x representa cantidades numéricas diferentes. Interpretar conocimiento extraído requiere coherencia de unidades y validación.",
+        "DDM y unidades",
+      ),
+    ],
+    2: [
+      n(
+        "Cuenta TODOS los nodos de sqrt(2*x²+5*x−3), representando potencia como operador binario.",
+        12,
+        "Operadores: sqrt, −, +, *, ^, * (6). Terminales: 2,x,2,5,x,3 (6). Total 12; las apariciones repetidas se cuentan por separado.",
+        "Tamaño compuesto",
+      ),
+      n(
+        "Altura en aristas de sqrt(2*x²+5*x−3), con potencia binaria y raíz nivel cero.",
+        5,
+        "Una ruta máxima es sqrt → − → + → * → ^ → x. Son seis nodos en esa ruta, pero cinco aristas; altura 5.",
+        "Altura compuesta",
+      ),
+      n(
+        `Árbol con ${k} nodos binarios y 3 unarios, todos de aridad completa. ¿Cuántas hojas tiene?`,
+        k + 1,
+        `Si B=${k}, U=3 y L hojas: aristas=2B+U=N−1=B+U+L−1. Al cancelar U, L=B+1=${k + 1}.`,
+        "Conteo por aridad",
+      ),
+      c(
+        "Dos árboles diferentes producen las mismas salidas para todo x en su dominio común. ¿Qué relación es posible?",
+        [
+          "Genotipos distintos y fenotipo funcional equivalente",
+          "Genotipos idénticos necesariamente",
+          "Uno debe ser inválido",
+          "El tamaño debe coincidir",
+        ],
+        0,
+        "+(x,0) y x codifican estructuras distintas pero representan la misma función. La equivalencia funcional no exige igualdad de genotipo o tamaño.",
+        "Genotipo y fenotipo",
+      ),
+      c(
+        "Un árbol tiene 15 nodos y altura 3. Solo permite aridades 0,1,2. ¿Qué puede concluirse?",
+        [
+          "Debe contener algún operador unario",
+          "Debe llenar todos los niveles y no puede contener unarios",
+          "Es imposible",
+          "Solo tiene una hoja",
+        ],
+        1,
+        "La cota para altura 3 es 2⁴−1=15. Alcanzarla exige todos los lugares de los cuatro niveles; cualquier nodo unario dejaría al menos un lugar sin ocupar.",
+        "Cota binaria",
+      ),
+    ],
+    3: [
+      n(
+        `Evalúa el postorder: x, 2, ^, ${k}, x, −, /. Usa x=3.`,
+        9 / (k - 3),
+        "Se construye x²/(k−x). Primero 3²=9; luego k−3; finalmente 9/(k−3). Si k=3 el denominador sería cero, por eso la variante evita ese caso.",
+        "Evaluación postorder",
+      ),
+      c(
+        "Un evaluador de postorder usa a=pop(); b=pop(); push(a/b). Para tokens 8,2,/ obtiene 0.25. ¿Corrección mínima?",
+        [
+          "push(b/a)",
+          "Cambiar / por *",
+          "Usar inorder sin paréntesis",
+          "Apilar 8 dos veces",
+        ],
+        0,
+        "La pila extrae primero el operando derecho (2) y luego el izquierdo (8). La operación correcta es izquierdo/derecho=b/a=4.",
+        "Pila y operandos",
+      ),
+      c(
+        "Tokens postorder: x,2,+,3. El evaluador termina con dos valores en la pila. ¿Conclusión?",
+        [
+          "Es un programa válido que devuelve el último valor",
+          "La secuencia no representa un único árbol completo bajo esta biblioteca",
+          "Siempre equivale a x+5",
+          "Es un árbol de altura cero",
+        ],
+        1,
+        "x,2,+ produce un valor y queda además el terminal 3. Para una expresión completa debe quedar exactamente un valor, sin operandos sobrantes ni subdesbordamientos.",
+        "Validación postorder",
+      ),
+      c(
+        "¿Qué expresión corresponde al preorder −, /, x, 2, sin, x?",
+        ["(x/2)−sin(x)", "x/(2−sin(x))", "sin(x−x/2)", "(2/x)−sin(x)"],
+        0,
+        "La raíz − requiere dos hijos: primero / con hijos x y 2; luego sin con único hijo x. Respetar aridad permite delimitar cada subárbol.",
+        "Reconstrucción preorder",
+      ),
+      n(
+        "Evalúa −(^(+(x,1),2),*(3,x)) para x=2.",
+        3,
+        "x+1=3; 3²=9; 3x=6; 9−6=3. La potencia se aplica a la suma completa, no solo al terminal 1.",
+        "Evaluación compuesta",
+      ),
+      o(
+        "Orden topológico de evaluación de log(1+x²) para x=2.",
+        [
+          "Evaluar log(5)",
+          "Obtener x=2 y constante 2",
+          "Calcular x²=4",
+          "Sumar 1+4=5",
+        ],
+        "2,3,4,1",
+        "Los terminales alimentan la potencia; después se suma 1 y solo entonces se evalúa log. log(5)≈1.60944 está definido porque 5>0.",
+        "Dependencias de evaluación",
+      ),
+      c(
+        "Este evaluador accede a n.right antes de distinguir sin. ¿Qué falla con sin(x)?",
+        [
+          "sin requiere dos hijos",
+          "Puede acceder a un hijo inexistente antes de ejecutar el caso unario",
+          "Solo falla con constantes negativas",
+          "No hay problema",
+        ],
+        1,
+        "Un nodo sin tiene un único hijo. Evaluar incondicionalmente derecha presupone aridad 2 y falla antes de llegar al tratamiento unario.",
+        "Código de aridad",
+        'a = eval(n.left)\nb = eval(n.right)\nif n.op == "sin": return sin(a)',
+      ),
+    ],
+    4: [
+      c(
+        "¿Dominio real de log(sqrt(x−2)) bajo operaciones ordinarias?",
+        ["x≥2", "x>2", "Todos los reales", "x≠2"],
+        1,
+        "sqrt exige x−2≥0, pero log exige sqrt(x−2)>0. La intersección estricta es x>2; en x=2 aparece log(0).",
+        "Composición de dominios",
+      ),
+      n(
+        "Máximo global h=5; se regenera una rama cuyo nodo raíz está en profundidad 3. ¿Máxima altura de la rama?",
+        2,
+        "Profundidad de inserción + altura de rama ≤ altura máxima. Por tanto 3+h_rama≤5 y h_rama≤2.",
+        "Presupuesto de rama",
+      ),
+      c(
+        "Grow con profundidad máxima 4 genera una hoja en la raíz. ¿Es un error?",
+        [
+          "Sí, todos deben medir 4",
+          "No: máxima es una cota y grow puede terminar antes",
+          "Sí, todo árbol necesita operador",
+          "No, pero tiene altura 1",
+        ],
+        1,
+        "Grow permite elegir terminal antes del límite, incluida la raíz. Una hoja sola tiene altura 0 y respeta la cota 4. Full sigue otra política.",
+        "Generación grow",
+      ),
+      c(
+        "¿Qué política conserva significado matemático ordinario al evaluar todos los puntos?",
+        [
+          "Reemplazar silenciosamente log(−2) por cero",
+          "Marcar candidato inválido si falla una operación en cualquier muestra",
+          "Omitir muestras difíciles y dividir por n original",
+          "Asignar MSE negativo a divisiones por cero",
+        ],
+        1,
+        "Todos los candidatos deben evaluarse sobre las mismas muestras. Una falla de dominio invalida la candidata, salvo que se declare otra biblioteca protegida.",
+        "Política de dominio",
+      ),
+    ],
+    5: [
+      n(
+        "y=[2,4,6], ŷ=[1,5,7]. Calcula R².",
+        0.625,
+        "ȳ=4. SSE=1+1+1=3; SST=4+0+4=8. R²=1−3/8=0.625.",
+        "R² compuesto",
+      ),
+      n(
+        "y=[2,4,6], ŷ=[1,5,7]. Calcula NMSE según el curso.",
+        3 / 56,
+        "SSE=(2−1)²+(4−5)²+(6−7)²=3. Σy²=4+16+36=56. NMSE=3/56≈0.0535714.",
+        "NMSE compuesto",
+      ),
+      n(
+        `y=[${k},${k + 2},${k + 4}], ŷ=[${k + 2},${k + 2},${k + 2}]. Calcula MSE.`,
+        8 / 3,
+        "La predicción es la media. Residuos [−2,0,2], SSE=4+0+4=8. MSE=8/3≈2.666667, aunque R²=0.",
+        "MSE y media",
+      ),
+      c(
+        "Este R² usa el promedio de predicciones. ¿Cuándo deja de ser el R² del curso?",
+        [
+          "Nunca",
+          "Cuando el promedio predicho difiere del real, porque cambia la referencia SST",
+          "Solo cuando n es par",
+          "Siempre devuelve exactamente uno",
+        ],
+        1,
+        "SST se calcula alrededor de ȳ, promedio de observaciones reales. Centrar y en la media de predicciones cambia el denominador y la interpretación.",
+        "Código de R²",
+        "r2 = 1 - sse / sum((yi - mean(pred))**2 for yi in y)",
+      ),
+      c(
+        "Para y=[5,5,5], ŷ=[4,5,6], ¿qué conjunto es correcto?",
+        [
+          "MSE=2/3, NMSE=2/75, R² indefinido",
+          "MSE=0, NMSE=0, R²=1",
+          "MSE=2, NMSE=2/3, R²=0",
+          "Todas indefinidas",
+        ],
+        0,
+        "Residuos [1,0,−1], SSE=2. MSE=2/3; energía=75, NMSE=2/75; SST=0, por lo que R² es indefinido bajo la fórmula del curso.",
+        "Casos constantes",
+      ),
+      c(
+        "A tiene SSE=10 y 5 muestras; B tiene SSE=12 y 12 muestras de otro conjunto. ¿Qué conclusión es defendible?",
+        [
+          "B tiene menor MSE, pero no es una comparación justa de modelos sin mismos datos",
+          "A necesariamente generaliza mejor",
+          "B necesariamente es más interpretable",
+          "SSE basta para declarar ganador universal",
+        ],
+        0,
+        "MSE_A=10/5=2; MSE_B=12/12=1. Las métricas se obtuvieron en conjuntos diferentes: no aíslan el efecto del modelo y no justifican ganador universal.",
+        "Comparación de modelos",
+      ),
+      n(
+        "y=[−1,1], ŷ=[2,2]. Calcula R².",
+        -4,
+        "ȳ=0 y SST=1+1=2. SSE=(−1−2)²+(1−2)²=9+1=10. R²=1−10/2=−4; no tiene cota inferior cero.",
+        "R² negativo",
+      ),
+    ],
+    6: [
+      n(
+        "MSE=[0,1,3], w=1/(1+MSE). Probabilidad del individuo con MSE=1.",
+        2 / 7,
+        "Pesos [1,1/2,1/4], suma 7/4. La probabilidad buscada es (1/2)/(7/4)=2/7≈0.285714.",
+        "Ruleta normalizada",
+      ),
+      n(
+        "Torneo de 2 con reemplazo en población de 4, único mejor. ¿Probabilidad de que gane el mejor?",
+        7 / 16,
+        "El mejor gana si aparece al menos una vez. P(no aparecer)=(3/4)²=9/16; P(ganar)=1−9/16=7/16=0.4375.",
+        "Probabilidad de torneo",
+      ),
+      c(
+        "SUS p=[0.5,0.3,0.2], m=5, primer puntero 0.12. ¿Selecciones?",
+        ["1,1,2,2,3", "1,1,1,2,3", "1,2,3,1,2", "1,1,2,3,3"],
+        0,
+        "Punteros 0.12,0.32,0.52,0.72,0.92. Intervalos [0,.5),[.5,.8),[.8,1): resultados 1,1,2,2,3.",
+        "SUS calculado",
+      ),
+      c(
+        "Una implementación de ruleta usa exp(−MSE), pero todos los pesos subdesbordan a cero. ¿Qué falta?",
+        [
+          "Un tratamiento explícito del total cero, por ejemplo regeneración o transformación estable",
+          "Elegir siempre el último",
+          "Dividir entre cero y continuar",
+          "Asignar aptitud negativa",
+        ],
+        0,
+        "La normalización necesita suma positiva. Si se anula por subdesbordamiento, el algoritmo debe manejar el caso explícitamente; NaN no define probabilidades.",
+        "Estabilidad de selección",
+      ),
+      c(
+        "Dos participantes del torneo son referencias al mismo individuo por muestreo con reemplazo. ¿Es inválido?",
+        [
+          "Sí, siempre deben ser distintos",
+          "No; es permitido si la política declara reemplazo, aunque reduce competición en ese torneo",
+          "Sí, cambia la aridad",
+          "No, y garantiza elegir al mejor global",
+        ],
+        1,
+        "Muestrear con reemplazo permite repeticiones. El torneo puede comparar al mismo individuo consigo mismo, y la presión selectiva difiere de muestrear sin reemplazo.",
+        "Política de torneo",
+      ),
+      c(
+        "Se añade penalización λ·tamaño al MSE. ¿Qué magnitud debe usarse para afirmar ajuste puro?",
+        [
+          "La aptitud penalizada como si fuera MSE",
+          "El MSE sin penalización, mostrando el objetivo penalizado por separado",
+          "Solo tamaño",
+          "La probabilidad de ruleta",
+        ],
+        1,
+        "MSE+λ·tamaño es un objetivo de ajuste y complejidad. Presentarlo como MSE falsea la métrica; ambas magnitudes deben distinguirse.",
+        "Error y complejidad",
+      ),
+    ],
+    7: [
+      n(
+        "Una rama se inserta a profundidad 2 y tiene altura 3. El resto del contexto no supera altura 3. ¿Altura del hijo?",
+        5,
+        "La nueva ruta alcanza profundidad 2+3=5. La altura total es max(3,5)=5; no se suma la altura total de ambos padres.",
+        "Altura tras cruce",
+      ),
+      c(
+        "Pm=0.3, pesos de tipos [1,2,1,2]. ¿Probabilidad de regeneración (tipo 4) por hijo?",
+        ["0.1", "0.3", "1/6", "0.6"],
+        0,
+        "El peso condicional de tipo 4 es 2/(1+2+1+2)=1/3. Probabilidad conjunta 0.3×1/3=0.1.",
+        "Probabilidad de mutación",
+      ),
+      c(
+        "Switching en +(sin(x),x²) produce…",
+        [
+          "Un árbol siempre de mayor altura",
+          "Un genotipo distinto, pero misma función en su dominio",
+          "Aridad incorrecta",
+          "Una función necesariamente distinta",
+        ],
+        1,
+        "Intercambiar hijos cambia la representación, pero la suma es conmutativa. Ni altura ni cantidad de nodos cambian por este intercambio.",
+        "Switching y neutralidad",
+      ),
+      c(
+        "Cambiar sqrt(g) por +(g,h) requiere…",
+        [
+          "Solo cambiar etiqueta",
+          "Conservar g y generar un segundo hijo h dentro del presupuesto de altura",
+          "Eliminar g",
+          "Reevaluar con el MSE anterior",
+        ],
+        1,
+        "La aridad pasa de uno a dos: falta un argumento. Se genera h con altura permitida y después se evalúa la nueva función; el error anterior no sirve.",
+        "Cambio de aridad",
+      ),
+      c(
+        "El siguiente cruce altera una élite inesperadamente. ¿Causa más probable?",
+        [
+          "La población no es binaria",
+          "El hijo comparte referencias mutables con el padre",
+          "El MSE era positivo",
+          "No se usó raíz cuadrada",
+        ],
+        1,
+        "hijo=padre no copia el árbol. Modificar hijo.izq altera el mismo objeto al que apunta padre; puede corromper también élites compartidas.",
+        "Alias de árboles",
+        "hijo = padre\nhijo.izq = rama_otro_padre",
+      ),
+      n(
+        `Altura máxima ${k + 2}; el punto de mutación está en nivel ${k}. ¿Altura máxima de rama nueva?`,
+        2,
+        `La ruta más larga será ${k}+h_rama. Para no superar ${k + 2}, h_rama≤2. La altura se cuenta desde la raíz local de la rama.`,
+        "Regeneración acotada",
+      ),
+      c(
+        "Después de podar un hijo que excedía altura, se conserva el MSE que tenía antes de la poda. ¿Qué falla?",
+        [
+          "Nada: poda no cambia función",
+          "La reparación cambió expresión y exige nueva evaluación",
+          "Solo es necesario si la raíz es log",
+          "MSE debe aumentar por definición",
+        ],
+        1,
+        "Reemplazar una rama por un terminal puede cambiar todas las predicciones. El MSE almacenado corresponde al árbol anterior y ya no compara correctamente al hijo reparado.",
+        "Reevaluación de reparación",
+      ),
+    ],
+    8: [
+      c(
+        "Población N=8. Se copian 2 élites y luego 8 hijos. ¿Error y corrección?",
+        [
+          "Población pasa a 10; generar solo 6 plazas de hijos",
+          "No hay error",
+          "Deben borrarse las élites siempre",
+          "Se requieren 16 hijos",
+        ],
+        0,
+        "Las élites ocupan plazas dentro de N. Para conservar tamaño 8 se reservan 2 y se completan 8−2=6 con descendientes.",
+        "Tamaño generacional",
+      ),
+      c(
+        "Mejor histórico=0.1, mejor actual=0.4. ¿Compatible con qué política?",
+        [
+          "Elitismo obligatorio de 1 y datos fijos sin ruido",
+          "Archivo histórico sin conservación generacional garantizada",
+          "MSE negativo",
+          "Es imposible bajo toda política",
+        ],
+        1,
+        "El archivo puede recordar un individuo ya perdido. Con elitismo de una copia válida y evaluación fija, el mejor actual no debería empeorar respecto del mejor retenido.",
+        "Archivo y élite",
+      ),
+      c(
+        "Con datos fijos, evaluación determinista y una élite copiada, el mínimo de MSE pasa de 0.2 a 0.5. ¿Qué revisar primero?",
+        [
+          "Corrupción o pérdida de élite, o evaluación inconsistente",
+          "Que la mutación es demasiado baja como única explicación",
+          "Nada: es comportamiento necesario",
+          "El color de las curvas",
+        ],
+        0,
+        "La copia del individuo de error 0.2 debería seguir disponible, por lo que el mínimo no puede ser 0.5. Revisar referencias, reemplazo y reutilización incorrecta del error.",
+        "Invariante de elitismo",
+      ),
+      o(
+        "Ordena un reemplazo generacional válido con evaluación de padres disponible.",
+        [
+          "Evaluar hijos reparados",
+          "Seleccionar padres",
+          "Cruzar y mutar",
+          "Reparar/rechazar hijos inválidos",
+          "Copiar élites y completar población con hijos",
+        ],
+        "2,3,4,1,5",
+        "La selección usa errores existentes; variación genera propuestas; validación/reparación fija estructura; se evalúan esos árboles finales y se construye nueva población.",
+        "Secuencia completa",
+      ),
+      c(
+        "El MSE de entrenamiento baja al aumentar altura, pero el de validación sube. ¿Interpretación más respaldada?",
+        [
+          "Hay indicios de sobreajuste y conviene revisar complejidad/selección",
+          "La validación debe eliminarse",
+          "La ecuación original está demostrada",
+          "MSE no sirve para números positivos",
+        ],
+        0,
+        "El modelo ajusta mejor lo usado en búsqueda y peor muestras reservadas. Es una señal de sobreajuste; no una razón para ocultar el conjunto de validación.",
+        "Generalización evolutiva",
+      ),
+      c(
+        "Se inyecta al inicio 6.67+11*cos(7.23*x³) porque se conoce el generador del CSV y se anuncia que PG la descubrió. ¿Evaluación?",
+        [
+          "Demostración de descubrimiento independiente",
+          "Fuga de la solución: la búsqueda no descubrió esa estructura a partir de los datos",
+          "Solo cambia la semilla",
+          "Es equivalente a un terminal aleatorio",
+        ],
+        1,
+        "La fórmula se proporcionó como candidata usando conocimiento de la respuesta. Puede servir de comparación manual rotulada, pero no demuestra búsqueda simbólica independiente.",
+        "Integridad del laboratorio",
+      ),
+    ],
+  };
+  // Avoid the singular variant in the first postorder exercise.
+  if (unit === 3 && index === 0 && k === 3)
+    return n(
+      "Evalúa postorder x,2,^,5,x,−,/ para x=3.",
+      4.5,
+      "La expresión es x²/(5−x). Para x=3: 9/(5−3)=9/2=4.5. El orden de operandos en resta y división es esencial.",
+      "Evaluación postorder",
+    );
+  return groups[unit][index];
+}
