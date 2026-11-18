@@ -1,3 +1,3 @@
 # Organización de Unidad2
 
-Consulta el [índice de esta unidad](README.md) para localizar proyectos, materiales e instrucciones.
+Consulta el [índice actualizado de actividades](README.md).

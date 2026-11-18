@@ -236,3 +236,8 @@ añadida, independiente de los algoritmos de a.pdf.
 
 Referencia de la interfaz: [pintado y redimensionado de QWidget](https://doc.qt.io/qt-6/qwidget.html).
 Captura: `referencia/vistas/reinas_pyqt6.png`.
+
+
+## Ubicación actual de N-reinas
+
+La práctica gráfica, sus dependencias y pruebas se trasladaron a [02_N_reinas](../../02_N_reinas/). Los comandos antiguos que mencionan `reinas.py` deben ejecutarse desde esa carpeta.
